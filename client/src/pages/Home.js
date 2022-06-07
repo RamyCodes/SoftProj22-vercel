@@ -10,7 +10,7 @@ const Home = () => {
   console.log("currentUser order:" + sessionStorage.getItem('currentUser') );
     if(sessionStorage.getItem('currentUser') === null){
       const DeleteOrders = () =>{
-        axiosInstance.delete(`http://localhost:5000/api/orders`)
+        axiosInstance.delete(`/orders`)
         .then( res => {
           console.log(res)
         })
