@@ -3,7 +3,7 @@ import { ShoppingBasketOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import Announcement from "../Components/Announcement"
 import Navbar from "../Components/Navbar";
-import axios from "axios";
+import {axiosInstance} from "../config";
 import { Search, Add, Remove } from "@material-ui/icons";
 import { useState, useEffect } from "react";
 import { addProduct } from "../redux/cartRedux";
@@ -130,7 +130,7 @@ const handleQuantity = (type, search) =>{
 }
 
   useEffect(()=> {
-    axios.get(`http://localhost:5000/api/products?item=${searchButton}`)
+    axiosInstance.get(`/products?item=${searchButton}`)
         .then( res => {
           console.log(res)
           setProduct(res.data)
