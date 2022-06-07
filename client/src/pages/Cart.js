@@ -286,7 +286,6 @@ const Cart = () => {
           </Summary>
         </Bottom>
       </Wrapper>
-      <TopButton onClick={createOrder} style={{width: "350px", color: "white"}}>Order test</TopButton>
     </Container>
   );
 };
