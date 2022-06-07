@@ -9,7 +9,7 @@ import {
 import Success from "./pages/Success";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
 import Product from "./pages/Product";
 import Order from "./pages/Order";
 
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/Login" element={<Login/>} />
         <Route path="/Product" element={<Product/>} />
         <Route path="/Cart" element={<Cart/>} />
-        <Route path="/Register" element={<Register/>} />
+        {/* <Route path="/Register" element={<Register/>} /> */}
         <Route path="/Success" element={<Success/>} />
         <Route path="/Pay" element={<Pay/>} />
         <Route path="/Order" element={<Order/>} />
