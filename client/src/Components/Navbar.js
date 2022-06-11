@@ -91,9 +91,6 @@ const Navbar = () => {
           <Link style={{color: "black"}} to={`/Home`}>
           <MenuItem>HOME</MenuItem>
           </Link>
-          <Link style={{color: "black"}} to={`/Register`}>
-          <MenuItem>REGISTER</MenuItem>
-          </Link>
           <Link style={{color: "black"}} to={`/Cart`}>
           <MenuItem>
           <Badge badgeContent ={quantity} color="primary">
