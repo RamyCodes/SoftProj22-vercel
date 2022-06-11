@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Product from "./Product";
-import {axiosInstance} from "../config";
+import {axiosInstance, AxiosInstance} from "../config";
 
 const Container = styled.div`
   padding: 20px;
@@ -20,8 +20,8 @@ const Products = ({ cat, filters, sort }) => {
       try {
         const res = await axiosInstance.get(
           cat
-            ? `products?category=${cat}`
-            : "products"
+            ? `/products?category=${cat}`
+            : "/products"
         );
         setProducts(res.data);
       } catch (err) {}
@@ -34,10 +34,10 @@ const Products = ({ cat, filters, sort }) => {
     <Container>
           <h1 style={{color: "white"}}>Top products</h1>
       {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        ? filteredProducts.map((name) => <Product name={name} key={name.id} />)
         : products
             .slice(0,3)
-            .map((item) => <Product item={item} key={item.id} />)}
+            .map((name) => <Product name={name} key={name.id} />)}
     </Container>
   );
 };
