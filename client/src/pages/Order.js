@@ -263,6 +263,11 @@ const Cart = () => {
         alert("You can't cancel now, order is already shipped !")
         return;
       }
+      if(orderStatus == "delivered")
+      {
+        alert("You can't cancel now, order is already delivered ! Try to return it !")
+        return;
+      }
       await axiosInstance.put(`/orders/${orderId}`, {
         status : "CANCELLED"
       })
@@ -297,7 +302,7 @@ const Cart = () => {
                   <b>Order ID:</b> {order._id}
                   </ProductPrice>
                 <ProductPrice>
-                  <b>First Product:</b> {order.products[0].name} ({order.products[0].quantity}) 
+                  <b>First Product:</b> {order.products[0].item} ({order.products[0].quantity}) 
                   </ProductPrice>
                   <ProductPrice>
                   <b>Shipping address:</b> {order.address}
