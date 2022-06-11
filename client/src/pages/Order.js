@@ -297,7 +297,7 @@ const Cart = () => {
                   <b>Order ID:</b> {order._id}
                   </ProductPrice>
                 <ProductPrice>
-                  <b>First Product:</b> {order.products[0].item} ({order.products[0].quantity}) 
+                  <b>First Product:</b> {order.products[0].name} ({order.products[0].quantity}) 
                   </ProductPrice>
                   <ProductPrice>
                   <b>Shipping address:</b> {order.address}
