@@ -185,7 +185,7 @@ const Cart = () => {
       const res = await userRequest.post("/orders", {
         token: tokken,
         products: cart.products.map((item) => ({
-          item: item.item,
+          item: item.name,
           quantity: item.quantity,
         })),
         amount: cart.total,
@@ -193,6 +193,7 @@ const Cart = () => {
       });
       console.log("inside create order " + address)
       console.log("inside create order " + tokken)
+      console.log(cart.products.item.name)
     } catch (err){
       console.log(err.response);
   }
