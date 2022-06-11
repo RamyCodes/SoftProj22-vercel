@@ -6,7 +6,7 @@ import { Add, CenterFocusStrong, Remove } from "@material-ui/icons";
 import {Link} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import {axiosInstance} from "../config";
+import {axiosInstance, AxiosInstance} from "../config";
 import { useLocation } from "react-router";
 import { red } from "@material-ui/core/colors";
 
@@ -261,11 +261,6 @@ const Cart = () => {
       if(test(orderStatus) == "SHIPPED")
       {
         alert("You can't cancel now, order is already shipped !")
-        return;
-      }
-      if(test(orderStatus) == "DELIVERED")
-      {
-        alert("You can't cancel now, order is already delivered !")
         return;
       }
       await axiosInstance.put(`/orders/${orderId}`, {
