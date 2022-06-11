@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://soft22.herokuapp.com/api/";
+const BASE_URL = "https://softproj22.herokuapp.com/api/";
  const TOKEN = "tOkEnCuS"
 //   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
 //     .accessToken || "";
