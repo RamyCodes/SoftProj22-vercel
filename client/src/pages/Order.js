@@ -247,6 +247,7 @@ const Cart = () => {
       console.log(orderStatus, shippingStatus)
       if(orderStatus === "delivered" && shippingStatus === "DELIVERED"){
         alert("Order return for order id " + orderId +" requested !")
+        shippingStatus = "RETURNED";
         axiosInstance.put(`orders/${orderId}`, {
           status : "FULL"
         })
