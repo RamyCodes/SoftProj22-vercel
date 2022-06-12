@@ -201,10 +201,10 @@ const Cart = () => {
   }
   };
 
-   const createShipping = () => {
+    const createShipping = async () => {
     console.log(tokken);
     try {
-      const res = userRequest.post("/shippings", {
+      const res = await userRequest.post(`/shippings/`, {
         status: "CREATED",
         orderid: tokken,
       });
