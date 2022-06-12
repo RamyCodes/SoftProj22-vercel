@@ -194,11 +194,25 @@ const Cart = () => {
       console.log("inside create order " + address)
       console.log("inside create order " + tokken)
       console.log(cart.products.item.name)
+      createShipping();
     } catch (err){
       console.log(err.response);
   }
   };
 
+   const createShipping = async () => {
+    console.log(tokken);
+    try {
+      const res = await userRequest.post(`/shippings/`, {
+        status: "CREATED",
+        orderid: tokken,
+      });
+    }
+    catch (err){
+      console.log(err.response);
+  }
+  }
+  
   useEffect(() => {
     const makeRequest = async () => {
       try {
