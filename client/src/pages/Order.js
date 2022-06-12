@@ -10,6 +10,8 @@ import {axiosInstance, AxiosInstance} from "../config";
 import { useLocation } from "react-router";
 import { red } from "@material-ui/core/colors";
 
+
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -160,7 +162,7 @@ const Cart = () => {
       
     //   DeleteOrders();
     // }
-    axiosInstance.get(`/orders?token=`)
+    axiosInstance.get(`orders?token=`)
         .then( res => {
           console.log(res)
           setOrder(res.data)
@@ -177,12 +179,15 @@ const Cart = () => {
         res = "FULLFILLED"
       }
       if(oStatus === "delivered"){
-        axiosInstance.put(`/orders/${orderId}`, {
+        axiosInstance.put(`orders/${orderId}`, {
         status : "FULLFILLED"
+        
       })
+      
       }
       if(oStatus === "CANCELLED"){
         res = "CANCELLED"
+        
       }
       if(oStatus === "PROCESSING"){
         const times = async () =>{
@@ -192,23 +197,26 @@ const Cart = () => {
       }
       if(oStatus === "shipped"){
         res = "PROCESSING"
+
       }
       if(shippingStatus === "SHIPPED"){
         res = "PROCESSING"
-        axiosInstance.put(`/orders/${orderId}`, {
+        axiosInstance.put(`orders/${orderId}`, {
         status : "delivered"
       })
+      .then(axiosInstance.get('/shipped'))
       }
       if(shippingStatus === "CREATED"){
-        axiosInstance.put(`/orders/${orderId}`, {
+        axiosInstance.put(`orders/${orderId}`, {
         status : "shipped"
       })
         res = "PROCESSING"
       }
       if(oStatus === "CREATED"){
         res = "CREATED"
-        axiosInstance.put(`/orders/${orderId}`, {
+        axiosInstance.put(`orders/${orderId}`, {
         status : "PROCESSING"
+        
       })
       }
       return res;
@@ -224,8 +232,10 @@ const Cart = () => {
         res = "CREATED";
       if(sStatus == "shipped")
         setTimeout(res = "SHIPPED", 5000)
-      if(sStatus == "delivered")
-        setTimeout(res = "DELIVERED", 500)
+      if(sStatus == "delivered"){
+        res = "DELIVERED"
+        axiosInstance.get('/delivered')
+      }
       if(sStatus == "FULLFILLED")
         res = "DELIVERED";
       if(sStatus == "FULL")
@@ -237,9 +247,10 @@ const Cart = () => {
       console.log(orderStatus, shippingStatus)
       if(orderStatus === "delivered" && shippingStatus === "DELIVERED"){
         alert("Order return for order id " + orderId +" requested !")
-        axiosInstance.put(`/orders/${orderId}`, {
+        axiosInstance.put(`orders/${orderId}`, {
           status : "FULL"
         })
+        .then(axiosInstance.get("/returned"))
         window.location.replace("/order");
       }
       else{
@@ -263,14 +274,11 @@ const Cart = () => {
         alert("You can't cancel now, order is already shipped !")
         return;
       }
-      if(orderStatus == "delivered")
-      {
-        alert("You can't cancel now, order is already delivered ! Try to return it !")
-        return;
-      }
-      await axiosInstance.put(`/orders/${orderId}`, {
+      await axiosInstance.put(`orders/${orderId}`, {
         status : "CANCELLED"
       })
+      .then(axiosInstance.get("/cancelled"))
+
       .then((data) => {
         console.log(data);
         alert("Order " + orderId + " is now cancelled !");
