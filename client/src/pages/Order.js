@@ -269,6 +269,11 @@ const Cart = () => {
         alert("You can't cancel now, order is already fullfilled !")
         return;
       }
+      if(test(orderStatus) == "DELIVERED")
+      {
+        alert("You can't cancel now, order was already delivered !")
+        return;
+      }
       if(test(orderStatus) == "SHIPPED")
       {
         alert("You can't cancel now, order is already shipped !")
