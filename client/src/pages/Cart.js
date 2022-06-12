@@ -12,6 +12,7 @@ import {useNavigate} from 'react-router-dom';
 import { removeProducts } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { createContext } from "react";
+import {axiosInstance} from "../config";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
