@@ -192,10 +192,10 @@ const Cart = () => {
         amount: cart.total,
         address: address
       });
+      createShipping();
       console.log("inside create order " + address)
       console.log("inside create order " + tokken)
       console.log(cart.products.item.name)
-      createShipping();
     } catch (err){
       console.log(err.response);
   }
